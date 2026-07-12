@@ -8,6 +8,7 @@ async function $(t=""){let e=new TextEncoder,o=new TextDecoder("utf-8",{fatal:!0
     --bg: white;
     font-family: monospace;
     user-select: none;
+    min-width: 80em;
   }
 
   #root {
