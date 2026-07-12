@@ -5,7 +5,6 @@ export type Auth = {
   login_token: string;
 };
 export async function makeHbk(host = '') {
-  const Hd = { 'user-agent': 'Android' };
   const Te = new TextEncoder(), Td = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true });
   const Sb = crypto.subtle, Mk = 'a90f3731745f1c30ee77cb13fc00005a', Ms = `&signatures=${Mk}CkMxWNB666`;
   const Hk = await Sb.importKey('raw', Te.encode(Mk), { name: 'HMAC', hash: 'SHA-256' }, true, ['sign']);
@@ -31,7 +30,8 @@ export async function makeHbk(host = '') {
     },
     async req(a: Auth, api: string, args: Record<string, string>) {
       const body = new URLSearchParams({ ...await this.sign(a), ...args });
-      const resp = await fetch(this.host + api, { method: 'POST', body, headers: Hd });
+      const headers = { 'user-agent': 'Android com.kuangxiangciweimao.novel.c ' + a.app_version };
+      const resp = await fetch(this.host + api, { method: 'POST', body, headers });
       if (!resp.ok) throw Error(`HTTP Error: ${resp.status} ${resp.statusText}`);
       const json = await this.decHbk(await resp.text());
       if (parseInt(json.code) !== 100000) throw Error(`CWM Error: ${JSON.stringify(json)}`);
