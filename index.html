@@ -12,6 +12,8 @@
     <li>前往 <a href="https://app1.hbooker.com">https://app1.hbooker.com</a></li>
     <li>点击书签，等待脚本加载</li>
 </ol>
-<pre>javascript:void(document.body.appendChild(document.createElement('script')).src='https://raw.githubusercontent.com/shimamura-sakura/hbkdl_web/refs/heads/main/dist.js');</pre>
+<script>
+document.body.appendChild(document.createElement('pre')).innerText = `javascript:void(document.body.appendChild(document.createElement('script')).src='${location.href}')`;
+</script>
 </body>
 </html>
