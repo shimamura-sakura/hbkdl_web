@@ -13,7 +13,8 @@
     <li>点击书签，等待脚本加载</li>
 </ol>
 <script>
-document.body.appendChild(document.createElement('pre')).innerText = `javascript:void(document.body.appendChild(document.createElement('script')).src='${location.href}/dist.js')`;
+const path = location.href.replace(/\/?(index.html)?$/, '/dist.js');
+document.body.appendChild(document.createElement('pre')).innerText = `javascript:void(document.body.appendChild(document.createElement('script')).src='${path}')`;
 </script>
 </body>
 </html>
